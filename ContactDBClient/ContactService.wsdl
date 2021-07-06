@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions name="ContactDefinitions" targetNamespace="urn:Contact" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:contact="urn:Contact" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+
+	<!-- create a type that contains the required details for the address -->
+
+	<types>
+		<schema elementFormDefault="qualified" targetNamespace="urn:Contact"
+		xmlns="http://www.w3.org/2001/XMLSchema">
+
+
+			<complexType name ="address">
+				<sequence>
+					<element name="street" type="xsd:string"/>
+					<element name="city" type="xsd:string"/>
+					<element name="postcode" type="xsd:string"/>
+				</sequence>
+			</complexType>
+
+			<!-- create the object that stores the details of the contact -->
+
+			<complexType name="contactDetail">
+				<sequence>
+					<element name="firstname" type="xsd:string"/>
+					<element name="surname" type="xsd:string"/>
+					<element name="phonenumber" type="xsd:string"/>
+					<element name ="address" type="contact:address" />
+
+				</sequence>
+			</complexType>
+
+			<complexType name="contactDetails">
+				<sequence>
+					<element maxOccurs="unbounded" minOccurs="0" name="listOfContacts" type="contact:contactDetail"/>
+				</sequence>
+			</complexType>
+
+			<element name="requestSingleContact" type="contact:contactDetail"/>
+			<element name="contactResponse" type ="xsd:string"/>
+			<element name="requestCity" type ="xsd:string"/>
+			<element name="MultipleContacts" type="contact:contactDetails"/>
+
+			<element name ="contactPhoneNumber" type="xsd:string"/>
+
+			<element name="Error" type="xsd:string"/>
+
+
+		</schema>
+	</types>
+
+
+	<!-- messages to handle the request and response to adding a contact-->
+	<message name="addContactRequest">
+		<part name ="contactRequest" element="contact:requestSingleContact"/>
+	</message>
+
+	<message name="addContactResponse">
+		<part name ="contactResponse" element="contact:contactResponse"/>
+	</message>
+
+	<!-- messages to handle the request and response for edting a contact-->
+	<message name="editContactRequest">
+		<part  name="contactRequest" element="contact:requestSingleContact"/>
+	</message>
+
+	<message name="editContactResponse">
+		<part  name="contactResponse" element="contact:requestSingleContact"/>
+	</message>
+
+
+	<!-- messages to handle the request and response for deleting a contact-->
+
+	<message name="deleteContactRequest">
+		<part  name="contactRequest" element="contact:contactPhoneNumber"/>
+	</message>
+
+	<message name="deleteContactResponse">
+		<part  name="contactResponse" element="contact:contactResponse"/>
+	</message>
+
+
+	<!-- messages for requesting and responding to getting information about the contact -->
+
+	<message name="getContactNumber">
+		<part name="contactRequest" element="contact:contactPhoneNumber"/>
+	</message>
+	<message name="getContactNumberResponse">
+		<part name="contactResponse" element="contact:requestSingleContact"/>
+	</message>
+
+	<!--message for getting a list of people based on city -->
+
+	<message name="getCityRequest">
+		<part name="contactRequest" element="contact:requestCity"/>
+
+	</message>
+
+	<message name="getCityResponse">
+		<part name="contactResponsee" element="contact:MultipleContacts"/>
+
+	</message>
+
+
+
+	<!-- Message for handleing error messages -->
+
+
+	<message name="errorFault">
+		<part name="errorMessage" element="contact:Error"/>
+	</message>
+
+
+	<portType name="contactPort">
+
+
+
+
+		<operation name="getByCity">
+			<input message="contact:getCityRequest"></input>
+
+			<output message="contact:getCityResponse"></output>
+			<fault name ="Error" message ="contact:errorFault"/>
+
+		</operation>
+
+
+
+		<operation name="getByPhoneNumber">
+			<input message="contact:getContactNumber"></input>
+
+			<output message="contact:getContactNumberResponse"></output>
+			<fault name ="Error" message ="contact:errorFault"/>
+
+		</operation>
+
+
+		<operation name="addContact">
+			<input message="contact:addContactRequest"></input>
+
+			<output message="contact:addContactResponse"></output>
+			<fault name ="Error" message ="contact:errorFault"/>
+		</operation>
+
+		<operation name="editContact">
+			<input message="contact:editContactRequest"></input>
+
+			<output message="contact:editContactResponse"></output>
+			<fault name ="Error" message ="contact:errorFault"/>
+		</operation>
+
+
+		<operation name="deleteContact">
+			<input message="contact:deleteContactRequest"></input>
+
+			<output message="contact:deleteContactResponse"></output>
+			<fault name ="Error" message ="contact:errorFault"/>
+		</operation>
+
+
+
+
+
+	</portType>
+
+
+
+	<binding name="contactBinding" type="contact:contactPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+
+		<operation name="getByCity">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</input>
+			<output>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</output>
+			<fault name ="Error">
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+
+			</fault>
+		</operation>
+
+
+
+		<operation name="getByPhoneNumber">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</input>
+			<output>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</output>
+			<fault name ="Error">
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+
+			</fault>
+		</operation>
+
+
+		<operation name="addContact">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</input>
+			<output>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</output>
+			<fault name ="Error">
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+
+			</fault>
+		</operation>
+
+
+		<operation name="editContact">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</input>
+			<output>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</output>
+			<fault name ="Error">
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+
+			</fault>
+		</operation>
+
+
+		<operation name="deleteContact">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</input>
+			<output>
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+			</output>
+			<fault name ="Error">
+				<soap:body use="literal" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Contact"/>
+
+			</fault>
+		</operation>
+
+	</binding>
+
+
+	<service name="ContactService">
+		<port name="ContactAccess" binding="contact:contactBinding">
+			<soap:address location="http://127.0.0.1:8080/axis2/services/ContactService"/>
+		</port>
+	</service>
+</definitions>
