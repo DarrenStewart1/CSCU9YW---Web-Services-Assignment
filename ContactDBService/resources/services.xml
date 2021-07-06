@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file was auto-generated from WSDL -->
+<!-- by the Apache Axis2 version: 1.7.9  Built on : Nov 16, 2018 (12:05:37 GMT) -->
+<serviceGroup>
+    <service name="ContactService">
+        <messageReceivers>
+            <messageReceiver mep="http://www.w3.org/ns/wsdl/in-out" class="contact.ContactServiceMessageReceiverInOut"/>
+        </messageReceivers>
+        <parameter name="ServiceClass">contact.ContactServiceSkeleton</parameter>
+        <parameter name="useOriginalwsdl">true</parameter>
+        <parameter name="modifyUserWSDLPortAddress">true</parameter>
+        <operation name="editContact" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Contact">
+            <actionMapping>urn:Contact:contactPort:editContactRequest</actionMapping>
+            <outputActionMapping>urn:Contact:contactPort:editContactResponse</outputActionMapping>
+            <faultActionMapping faultName="Error">urn:Contact:contactPort:editContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault">urn:Contact:contactPort:editContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault_Exception">urn:Contact:contactPort:editContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="errorFault">urn:editContacterrorFault</faultActionMapping>
+        </operation>
+        <operation name="getByCity" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Contact">
+            <actionMapping>urn:Contact:contactPort:getByCityRequest</actionMapping>
+            <outputActionMapping>urn:Contact:contactPort:getByCityResponse</outputActionMapping>
+            <faultActionMapping faultName="Error">urn:Contact:contactPort:getByCity:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault">urn:Contact:contactPort:getByCity:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault_Exception">urn:Contact:contactPort:getByCity:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="errorFault">urn:getByCityerrorFault</faultActionMapping>
+        </operation>
+        <operation name="getByPhoneNumber" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Contact">
+            <actionMapping>urn:Contact:contactPort:getByPhoneNumberRequest</actionMapping>
+            <outputActionMapping>urn:Contact:contactPort:getByPhoneNumberResponse</outputActionMapping>
+            <faultActionMapping faultName="Error">urn:Contact:contactPort:getByPhoneNumber:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault">urn:Contact:contactPort:getByPhoneNumber:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault_Exception">urn:Contact:contactPort:getByPhoneNumber:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="errorFault">urn:getByPhoneNumbererrorFault</faultActionMapping>
+        </operation>
+        <operation name="deleteContact" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Contact">
+            <actionMapping>urn:Contact:contactPort:deleteContactRequest</actionMapping>
+            <outputActionMapping>urn:Contact:contactPort:deleteContactResponse</outputActionMapping>
+            <faultActionMapping faultName="Error">urn:Contact:contactPort:deleteContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault">urn:Contact:contactPort:deleteContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault_Exception">urn:Contact:contactPort:deleteContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="errorFault">urn:deleteContacterrorFault</faultActionMapping>
+        </operation>
+        <operation name="addContact" mep="http://www.w3.org/ns/wsdl/in-out" namespace="urn:Contact">
+            <actionMapping>urn:Contact:contactPort:addContactRequest</actionMapping>
+            <outputActionMapping>urn:Contact:contactPort:addContactResponse</outputActionMapping>
+            <faultActionMapping faultName="Error">urn:Contact:contactPort:addContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault">urn:Contact:contactPort:addContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="ErrorFault_Exception">urn:Contact:contactPort:addContact:Fault:Error</faultActionMapping>
+            <faultActionMapping faultName="errorFault">urn:addContacterrorFault</faultActionMapping>
+        </operation>
+    </service>
+</serviceGroup>
